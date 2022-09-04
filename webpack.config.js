@@ -1,8 +1,14 @@
 'use strict'
 
 module.exports = {
-    entry: './main',
+    entry: './main.js',
     output: {
-        filename: './dist/build.js'
-    }
+        filename: './build.js',
+        // globalObject: "this",
+        // library: ['nn', 'imgUtil', 'startWarp']
+    },
+    optimization: {
+        minimize: false
+    },
+    
 };
