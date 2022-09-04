@@ -12,6 +12,39 @@
         console.log(window["startWarp"]);
 
     </script>
+    <script>
+
+        var warp = WarpFactory.forMainnet();
+
+        var deployedContracts = {
+            fc: 'Q1ga6CExJs-AARQi3mvtFiPcdZmXi_8e22QURdhrnug',
+        };
+  
+        async function startWarpContact() {
+        console.log("Entered startWarpContact");
+        // create Wallet
+        const wallet = await arweave.wallets.generate();
+        walletAddress = await arweave.wallets.getAddress(wallet);
+        console.log(`Wallet address: ${walletAddress}`);
+
+        // Interacting with the contract
+        var contract = warp
+        .pst(deployedContracts.fc)
+        .connect(wallet);
+
+        console.log(`contract: ${contract}`);
+        
+        }
+
+
+        async function runWarpFunction() {
+            const viewState = await contract.viewState({function: 'brainFn'});
+
+            return viewState.result;
+
+        }
+
+    </script>
     <style>
         body {
             margin: 10px;
